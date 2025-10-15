@@ -64,17 +64,15 @@ https://caddyserver.com/docs/running#local-https-with-docker
 
 ## Change Caddy Configuration
 
-On the server you need specify the domain to obtain TLS certificates from Let's Encrypt. You can do this by
-modifying the `Caddyfile` located in the `.docker` directory.
+On the server you need specify the domain to obtain TLS certificates from Let's Encrypt. You can do this by modifying
+the `Caddyfile` located in the `.docker` directory.
 
 ```shell
-docker run --rm -p "80:80" -p "443:443" --rm -v "$(pwd)/myserver/Caddyfile:/etc/caddy/Caddyfile:ro" bun-app:latest
+docker run --rm \
+  -p "80:80" \
+  -p "443:443" \
+  -e DOMAIN=your-server.com \
+  bun-app:latest
 ```
 
-Make sure to replace `myserver/Caddyfile` with the path to your custom Caddyfile.
-
-```
-server.com { 
-  reverse_proxy localhost:3000
-}
-```
+Or you can update `Caddyfile` and rebuild the image.

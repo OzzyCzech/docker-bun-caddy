@@ -20,13 +20,12 @@
 }
 
 :80 {
-  redir https:// {host} {uri} permanent
+  redir https://{host}{uri} permanent
 }
 
 # Reverse proxy to Bun server running on port 3000
 
-https://localhost {
-  tls internal # Use Caddy's internal CA to issue a certificate
+https://{$DOMAIN:localhost} {
   reverse_proxy localhost:3000
 }
 
