@@ -1,0 +1,35 @@
+{
+# Log everything to stdout
+  log {
+	     output stdout
+	     format console
+	     level DEBUG
+      }
+
+# Run Bun with supervisor
+# https://caddyserver.com/docs/modules/supervisor
+  supervisor {
+	            bun /app/index.ts {
+		                             restart_policy always
+		                             redirect_stdout stdout
+		                             redirect_stderr stderr
+	                              }
+
+             }
+
+}
+
+:80 {
+  redir https:// {host} {uri} permanent
+}
+
+# Reverse proxy to Bun server running on port 3000
+
+https://localhost {
+  tls internal # Use Caddy's internal CA to issue a certificate
+  reverse_proxy localhost:3000
+}
+
+# on the sever you should change localhost to your domain name
+# and set up DNS to point to your server's IP address
+# and open port 443 in your firewall for HTTPS traffic

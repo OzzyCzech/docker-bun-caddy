@@ -1,0 +1,7 @@
+.git
+.idea
+.gitignore
+.dockerignore
+readme.md
+node_modules
+docker-bake.hcl
