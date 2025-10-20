@@ -1,12 +1,4 @@
 ##############################################################
-# Prepare Caddy with xcaddy
-##############################################################
-
-FROM caddy:builder AS caddy
-RUN xcaddy build --with github.com/baldinof/caddy-supervisor
-
-
-##############################################################
 # Application Build Stage
 ##############################################################
 
@@ -31,6 +23,13 @@ RUN bun build \
 	--outfile myserver \
 	index.ts &&  \
     chmod +x myserver
+
+##############################################################
+# Prepare Caddy with xcaddy
+##############################################################
+
+FROM caddy:builder AS caddy
+RUN xcaddy build --with github.com/baldinof/caddy-supervisor
 
 ##############################################################
 # Aplication Stage
