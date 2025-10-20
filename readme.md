@@ -54,7 +54,11 @@ docker buildx bake \
 ## Run the Docker Container
 
 ```shell
-docker run --rm -p "80:80" -p "443:443" --rm bun-app:latest
+docker run --rm \
+  -p "80:80" \
+  -p "443:443" \
+  -e DOMAIN="https://localhost" \
+  bun-app:latest
 ```
 
 Then open your browser and navigate to `https://localhost/` to see the Bun application running behind Caddy.
