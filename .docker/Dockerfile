@@ -38,9 +38,8 @@ RUN bun build \
 
 FROM oven/bun:alpine AS bun-app
 
-# Copy Caddy binary from the caddy builder stage
+# Copy Caddy binary and condiguration
 COPY --from=caddy /usr/bin/caddy /usr/bin/caddy
-# Copy Caddyfile configuration to the image
 COPY .docker/Caddyfile /etc/caddy/Caddyfile
 
 # Copy the application from the build stage
