@@ -36,7 +36,7 @@ RUN bun build \
 # Aplication Stage
 ##############################################################
 
-FROM oven/bun AS bun-app
+FROM oven/bun:alpine AS bun-app
 
 # Copy Caddy binary from the caddy builder stage
 COPY --from=caddy /usr/bin/caddy /usr/bin/caddy
