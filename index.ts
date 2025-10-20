@@ -7,6 +7,9 @@ serve({
 		routes: {
 			'/': () => {
 				return new Response("Hello, from Bun!");
+			},
+			'/api': () => {
+				return Response.json({message: "Hello from the API!"});
 			}
 		}
 	}
