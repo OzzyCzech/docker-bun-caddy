@@ -17,10 +17,6 @@
    }
 }
 
-:80 {
-  redir https://{host}{uri} permanent
-}
-
 # Reverse proxy to Bun server running on port 3000
 
 {$DOMAIN:localhost} {
