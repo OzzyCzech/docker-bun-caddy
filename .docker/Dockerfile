@@ -15,7 +15,6 @@ WORKDIR /app
 
 COPY package.json package.json
 COPY bun.lock bun.lock
-COPY index.ts index.ts
 
 ENV NODE_ENV=production
 
@@ -23,6 +22,7 @@ ENV NODE_ENV=production
 RUN bun install --frozen-lockfile
 
 # Build the project
+COPY index.ts index.ts
 
 RUN bun build \
 	--compile \
